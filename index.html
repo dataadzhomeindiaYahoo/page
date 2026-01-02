@@ -553,8 +553,8 @@
             <h1>Medical Professional Certification Excellence</h1>
             <p>Elevate your medical career with internationally recognized certification exams. Join thousands of healthcare professionals achieving excellence through our premium certification programs.</p>
             <div class="cta-buttons">
-                <a href="#" class="btn btn-primary">Get Started →</a>
-                <a href="#" class="btn btn-secondary">Learn More</a>
+                <a href="#cta-section" class="btn btn-primary">Get Started →</a>
+                <a href="#features" class="btn btn-secondary">Learn More</a>
             </div>
         </div>
     </section>
@@ -646,11 +646,11 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section">
+    <section class="cta-section" id="cta-section">
         <div class="cta-box">
             <h2>Ready to Advance Your Career?</h2>
             <p>Begin your certification journey today and join the elite community of certified medical professionals</p>
-            <a href="#" class="btn btn-primary">Schedule Your Exam →</a>
+            <a href="#" class="btn btn-primary" onclick="scheduleExam(event)">Schedule Your Exam →</a>
         </div>
     </section>
 
@@ -666,28 +666,28 @@
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="#">Exam Information</a></li>
-                    <li><a href="#">Study Resources</a></li>
-                    <li><a href="#">Testing Centers</a></li>
-                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#features">Exam Information</a></li>
+                    <li><a href="#features">Study Resources</a></li>
+                    <li><a href="#specialties">Testing Centers</a></li>
+                    <li><a href="#features">FAQs</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h4>Support</h4>
                 <ul>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Live Chat</a></li>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Technical Support</a></li>
+                    <li><a href="#contact" onclick="contactUs(event)">Contact Us</a></li>
+                    <li><a href="#contact" onclick="liveChat(event)">Live Chat</a></li>
+                    <li><a href="#features">Help Center</a></li>
+                    <li><a href="#contact" onclick="contactUs(event)">Technical Support</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h4>Legal</h4>
                 <ul>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Accreditation</a></li>
-                    <li><a href="#">Compliance</a></li>
+                    <li><a href="#" onclick="showInfo(event, 'privacy')">Privacy Policy</a></li>
+                    <li><a href="#" onclick="showInfo(event, 'terms')">Terms of Service</a></li>
+                    <li><a href="#features">Accreditation</a></li>
+                    <li><a href="#" onclick="showInfo(event, 'compliance')">Compliance</a></li>
                 </ul>
             </div>
         </div>
@@ -729,6 +729,43 @@
             el.style.transition = 'all 0.6s ease-out';
             observer.observe(el);
         });
+
+        // Schedule Exam Function
+        function scheduleExam(event) {
+            event.preventDefault();
+            const specialty = prompt('Please enter your medical specialty:');
+            if (specialty) {
+                const confirmationNumber = 'MCP-' + Math.floor(Math.random() * 1000000);
+                alert(`✅ Exam Scheduling Request Received!\n\nSpecialty: ${specialty}\nConfirmation: ${confirmationNumber}\n\nOur team will contact you within 24 hours to complete your exam scheduling.\n\nThank you for choosing MedCert Pro!`);
+            }
+        }
+
+        // Contact Us Function
+        function contactUs(event) {
+            event.preventDefault();
+            const message = prompt('How can we help you? Please describe your inquiry:');
+            if (message) {
+                const ticketNumber = 'TICKET-' + Math.floor(Math.random() * 100000);
+                alert(`✅ Support Request Submitted!\n\nTicket: ${ticketNumber}\n\nOur support team will respond to your inquiry within 2-4 hours.\n\nYou can also reach us at:\n📧 support@medcertpro.com\n📞 +1 (800) 555-0123`);
+            }
+        }
+
+        // Live Chat Function
+        function liveChat(event) {
+            event.preventDefault();
+            alert('💬 Live Chat\n\nConnecting you to our support team...\n\nChat Hours:\n• Monday-Friday: 8:00 AM - 8:00 PM EST\n• Saturday-Sunday: 10:00 AM - 6:00 PM EST\n\nAverage wait time: < 2 minutes\n\n(In a production environment, this would open a live chat widget)');
+        }
+
+        // Show Info Function
+        function showInfo(event, type) {
+            event.preventDefault();
+            const messages = {
+                privacy: '🔒 Privacy Policy\n\nYour privacy is important to us. We protect your personal information with industry-standard encryption and never share your data with third parties without consent.\n\nFor full privacy policy, contact: privacy@medcertpro.com',
+                terms: '📋 Terms of Service\n\nBy using MedCert Pro certification services, you agree to:\n• Maintain exam integrity\n• Follow testing protocols\n• Respect intellectual property\n\nFor complete terms, contact: legal@medcertpro.com',
+                compliance: '✓ Compliance & Accreditation\n\nMedCert Pro is accredited by:\n• International Medical Certification Board (IMCB)\n• Global Healthcare Standards Organization (GHSO)\n• National Medical Accreditation Council (NMAC)\n\nFor verification, visit: accreditation@medcertpro.com'
+            };
+            alert(messages[type] || 'Information not available.');
+        }
     </script>
 </body>
 </html>
