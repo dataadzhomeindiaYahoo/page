@@ -849,7 +849,6 @@
             // 2) Prefer continuing existing conversation (if any)
             try {
               $zoho.salesiq.chat.continue();
-              return;
             } catch (e) {}
         
             // 3) Otherwise start a new chat (question is mandatory before start)
