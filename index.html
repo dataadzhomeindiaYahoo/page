@@ -839,8 +839,33 @@
 
     <script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script><script id="zsiqscript" src="https://salesiq.zohopublic.com/widget?wc=siq9c17f4e59974eaffde67f13c0f4db1a934e57e931b461759881ae52416a5f018" defer></script>
 
-  
-    <script>
+  <script>
+            let hasActiveChat = false;
+            
+            $zoho.salesiq.ready = function () {
+            
+              // This callback runs when the page reloads and there are active chats.
+              $zoho.salesiq.chat.continue(function (visitid, data) {
+                // data.chatstatus will be present for an active chat
+                hasActiveChat = !!(data && data.chatstatus);
+              });
+            
+              document.getElementById("continueChatBtn").addEventListener("click", function () {
+                // Open widget UI
+                $zoho.salesiq.chatwindow.visible("show");
+            
+                if (hasActiveChat) {
+                  // Focus ongoing chat
+                  $zoho.salesiq.chat.continue();
+                } else {
+                  // Start a new chat (same end result as clicking "Chat with us now")
+                  $zoho.salesiq.visitor.question("Hi, I need help.");
+                  $zoho.salesiq.chat.start();
+                }
+              });
+            };
+</script>
+ <!--   <script>
         $zoho.salesiq.ready = function () {
                         $zoho.salesiq.chatwindow.visible("show");
 
@@ -858,6 +883,6 @@
             $zoho.salesiq.chat.start();
           });
         };
-</script>
+</script>-->
 </body>
 </html>
