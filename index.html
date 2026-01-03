@@ -843,27 +843,34 @@
             let hasActiveChat = false;
 
             $zoho.salesiq.ready = function () {
-                                    $zoho.salesiq.chatwindow.visible("show");
-
-              // This callback runs when the page reloads and there are active chats.
-              $zoho.salesiq.chat.continue(function (visitid, data) {
-                // data.chatstatus will be present for an active chat
-                hasActiveChat = !!(data && data.chatstatus);
-              });
-            
-              document.getElementById("continueChatBtn").addEventListener("click", function () {
-                // Open widget UI
                 $zoho.salesiq.chatwindow.visible("show");
+                 try{
+                          // This callback runs when the page reloads and there are active chats.
+                          $zoho.salesiq.chat.continue(function (visitid, data) {
+                            // data.chatstatus will be present for an active chat
+                            hasActiveChat = !!(data && data.chatstatus);
+                          });
+                        
+                          document.getElementById("continueChatBtn").addEventListener("click", function () {
+                            // Open widget UI
+                            $zoho.salesiq.chatwindow.visible("show");
             
-                if (hasActiveChat) {
-                  // Focus ongoing chat
-                  $zoho.salesiq.chat.continue();
-                } else {
-                  // Start a new chat (same end result as clicking "Chat with us now")
-                  $zoho.salesiq.visitor.question("Hi, I need help.");
-                  $zoho.salesiq.chat.start();
+                             
+                                    if (hasActiveChat) {
+                                      // Focus ongoing chat
+                                      $zoho.salesiq.chat.continue();
+                                    } else {
+                                      // Start a new chat (same end result as clicking "Chat with us now")
+                                      $zoho.salesiq.visitor.question("Hi, I need help.");
+                                      $zoho.salesiq.chat.start();
+                                    }
+                              }
+                          });
+                 }
+                catch (e) {
+                     $zoho.salesiq.visitor.question("Hi, Catch Block I need help.");
+                     $zoho.salesiq.chat.start();
                 }
-              });
             };
 </script>
  <!--   <script>
