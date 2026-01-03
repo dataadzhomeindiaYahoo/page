@@ -841,9 +841,10 @@
 
   <script>
             let hasActiveChat = false;
-            
+
             $zoho.salesiq.ready = function () {
-            
+                                    $zoho.salesiq.chatwindow.visible("show");
+
               // This callback runs when the page reloads and there are active chats.
               $zoho.salesiq.chat.continue(function (visitid, data) {
                 // data.chatstatus will be present for an active chat
