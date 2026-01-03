@@ -839,21 +839,24 @@
 
     <script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script><script id="zsiqscript" src="https://salesiq.zohopublic.com/widget?wc=siq9c17f4e59974eaffde67f13c0f4db1a934e57e931b461759881ae52416a5f018" defer></script>
 
+  
     <script>
-
-    // 1) Open widget
-    $zoho.salesiq.chatwindow.visible("show");
-
-    // 2) Prefer continuing existing conversation (if any)
-    try {
-      $zoho.salesiq.chat.continue();
-      return;
-    } catch (e) {}
-
-    // 3) Otherwise start a new chat (question is mandatory before start)
-    $zoho.salesiq.visitor.question("Hi, I need help continuing my task.");
-    $zoho.salesiq.chat.start();
-};
+        $zoho.salesiq.ready = function () {
+          document.getElementById("continueChatBtn").addEventListener("click", function () {
+            // 1) Open widget
+            $zoho.salesiq.chatwindow.visible("show");
+        
+            // 2) Prefer continuing existing conversation (if any)
+            try {
+              $zoho.salesiq.chat.continue();
+              return;
+            } catch (e) {}
+        
+            // 3) Otherwise start a new chat (question is mandatory before start)
+            $zoho.salesiq.visitor.question("Hi, I need help continuing my task.");
+            $zoho.salesiq.chat.start();
+          });
+        };
 </script>
 </body>
 </html>
