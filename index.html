@@ -842,6 +842,8 @@
   
     <script>
         $zoho.salesiq.ready = function () {
+                        $zoho.salesiq.chatwindow.visible("show");
+
           document.getElementById("continueChatBtn").addEventListener("click", function () {
             // 1) Open widget
             $zoho.salesiq.chatwindow.visible("show");
